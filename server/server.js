@@ -39,7 +39,7 @@ app.get('/people/:ageFrom/:ageTo', (req, res) => {
     res.status(404).send('No neighbour within range')
 })
 
-app.get('/people/:hHoldFrom/:hHoldTo', (req, res) => {
+app.get('/people/household/:hHoldFrom/:hHoldTo', (req, res) => {
     // logic here 
     res.status(200).send('People\'s houses only household ')
     // logic here
