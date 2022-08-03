@@ -53,3 +53,12 @@ function showPeopleByHouseholdMembers () {
         res.status(500).json({ error: e.message });
     }// TODO
     }
+
+    module.exports = {
+        showHouses,
+        showOneHouse,
+        showOnePerson,
+        showPeople,
+        showPeopleByHouseholdMembers,
+        showPeopleWithinAgeRange
+    }
