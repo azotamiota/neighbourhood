@@ -1,4 +1,4 @@
-const neighbourhood = require('../data')
+const neighbourhoodData = require('../data/neighboursData')
 
 class Neighbourhood {
     constructor(data) {
@@ -26,6 +26,14 @@ class Neighbourhood {
     }
 
     static showPeopleByHouseholdMembers () {
+        // TODO
+    }
+
+    static addPerson () {
+        // TODO
+    }
+
+    static addHouse () {
         // TODO
     }
 

@@ -54,11 +54,31 @@ function showPeopleByHouseholdMembers () {
     }// TODO
     }
 
+    function addPerson () {
+        try {
+            const addPerson = Neighbourhood.addPerson()
+            res.json(addPerson)
+        } catch (error) {
+        res.status(500).json({ error: e.message });
+        }
+    }
+
+    function addHouse () {
+        try {
+            const addHouse = Neighbourhood.addHouse()
+            res.json(addHouse)
+        } catch (error) {
+        res.status(500).json({ error: e.message });
+        }
+    }
+
     module.exports = {
         showHouses,
         showOneHouse,
         showOnePerson,
         showPeople,
         showPeopleByHouseholdMembers,
-        showPeopleWithinAgeRange
+        showPeopleWithinAgeRange,
+        addPerson,
+        addHouse
     }
