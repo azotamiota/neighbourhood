@@ -1,0 +1,9 @@
+-- INSERT INTO people (
+--     name,
+--     age,
+--     householdPeople
+-- ) VALUES (
+--     'John',
+--     34,
+--     2
+-- )
