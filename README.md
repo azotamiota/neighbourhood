@@ -1,4 +1,4 @@
-# Neighbourhood API - MVC approach
+# Neighbourhood API - MVC architecture
 
 ## Installation
 
