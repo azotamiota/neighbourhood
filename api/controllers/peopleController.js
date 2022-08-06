@@ -13,6 +13,7 @@ async function showAll (req, res) {
 async function showOneById (req, res) {
     try {
         const onePerson = await People.showOneById(req.params.id);
+        console.log('onePerson @ peopleController.js: ', onePerson)
         res.json(onePerson);
     } catch (e) {
         res.status(404).json({ error: e.message });
@@ -21,7 +22,7 @@ async function showOneById (req, res) {
 
 async function showPeopleWithinAgeRange (req, res) {
         try {
-            const peopleWithinAgeRange = await People.showWithinAgeRange();
+            const peopleWithinAgeRange = await People.showWithinAgeRange(req.params.ageFrom, req.params.ageTo);
             res.json(peopleWithinAgeRange);
         } catch (e) {
             res.status(500).json({ error: e.message });
@@ -30,7 +31,7 @@ async function showPeopleWithinAgeRange (req, res) {
 
 async function showPeopleByHouseholdMembers (req, res) {
         try {
-            const peopleByHousholdMembers = await People.showByHouseholdMembers();
+            const peopleByHousholdMembers = await People.showByHouseholdMembers(req.params.hHoldFrom, req.params.hHoldTo);
             res.json(peopleByHousholdMembers);
         } catch (e) {
             res.status(500).json({ error: e.message });

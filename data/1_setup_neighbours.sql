@@ -4,7 +4,7 @@ CREATE TABLE people (
 	houseid INT NOT NULL,
 	name VARCHAR(100) NOT NULL,
     age INT NOT NULL,
-    householdPeople INT NOT NULL
+    householdtotal INT NOT NULL
 );
 -- COPY people
 -- FROM $str$/data/people.csv$str$ 

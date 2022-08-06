@@ -2,7 +2,7 @@ INSERT INTO people (
     houseid,
     name,
     age,
-    householdPeople
+    householdtotal
 ) VALUES (
     1,
     'John',
