@@ -6,9 +6,9 @@ CREATE TABLE people (
     age INT NOT NULL,
     householdPeople INT NOT NULL
 );
-COPY people
-FROM $str$/data/people.csv$str$ 
-DELIMITER ',' CSV HEADER;
+-- COPY people
+-- FROM $str$/data/people.csv$str$ 
+-- DELIMITER ',' CSV HEADER;
 
 
 DROP TABLE IF EXISTS houses;
@@ -17,15 +17,16 @@ CREATE TABLE houses (
     addressid INT,
     owner VARCHAR(100)
 );
-COPY content
-FROM $str$/data/houses.csv$str$ 
-DELIMITER ',' CSV HEADER;
+-- COPY content
+-- FROM $str$/data/houses.csv$str$ 
+-- DELIMITER ',' CSV HEADER;
 
 DROP TABLE IF EXISTS addresses;
 CREATE TABLE addresses (
+    addressid serial PRIMARY KEY,
 	postcode VARCHAR(10),
     address VARCHAR(500)
 );
-COPY addresses
-FROM $str$/data/addresses.csv$str$ 
-DELIMITER ',' CSV HEADER;
+-- COPY addresses
+-- FROM $str$/data/addresses.csv$str$ 
+-- DELIMITER ',' CSV HEADER;
