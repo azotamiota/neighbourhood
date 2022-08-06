@@ -13,8 +13,8 @@ CREATE TABLE people (
 
 DROP TABLE IF EXISTS houses;
 CREATE TABLE houses (
-	houseid serial PRIMARY KEY,
-    addressid INT,
+	houseid INT NOT NULL,
+    addressid INT NOT NULL,
     owner VARCHAR(100)
 );
 -- COPY content
@@ -23,7 +23,7 @@ CREATE TABLE houses (
 
 DROP TABLE IF EXISTS addresses;
 CREATE TABLE addresses (
-    addressid serial PRIMARY KEY,
+    addressid INT NOT NULL,
 	postcode VARCHAR(10),
     address VARCHAR(500)
 );

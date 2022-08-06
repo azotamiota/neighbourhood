@@ -1,15 +1,15 @@
-const neighbourhoodData = require('../database/connect_postgres')
+const neighbourhoodData = require('../data/connect_postgres') //TODO
 
-class Neighbourhood {
+class People {
     constructor(data) {
         this.id = data.id// TODO
-        this.houseid = data.houseid// TODO
+        this.name = data.houseid// TODO
         this.name = data.name// TODO
         this.age = data.age// TODO
         this.householdPeople = data.householdPeople
     }
 
-    static showPeople() {
+    static showAll() {
        return new Promise (async (resolve, reject) => {
         try {
             const peopleData = await neighbourhoodData.query('SELECT * FROM people')
@@ -22,7 +22,7 @@ class Neighbourhood {
        })
     }
 
-    static showHouses() {
+    static showWithinAgeRange() {
     // TODO        
     }
 
