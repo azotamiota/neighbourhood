@@ -61,4 +61,4 @@ class People {
 
 }
 
-module.exports = Neighbourhood
+module.exports = People

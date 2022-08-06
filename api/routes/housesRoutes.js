@@ -1,6 +1,8 @@
 const router = require('express').Router()
-const indexController = require('../controllers/indexController')
+const housesController = require('../controllers/housesController')
 
-router.get('/houses', neighbourhoodController.showHouses)
-router.get('/houses/:id', neighbourhoodController.showOneHouse)
-router.post('/houses', neighbourhoodController.addHouse)
+router.get('/', housesController.showAll)
+router.get('/:id', housesController.showOneById)
+router.post('/', housesController.addHouse)
+
+module.exports = router;
