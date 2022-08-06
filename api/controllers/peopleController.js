@@ -3,7 +3,6 @@ const People = require('../models/People')
 async function showAll (req, res) {
         try {
             const allPeople = await People.showAll();
-            console.log('allPeople: ', allPeople)
             res.json(allPeople);
         } catch (e) {
             res.status(500).json({ error: e.message });

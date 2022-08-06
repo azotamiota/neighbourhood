@@ -1,17 +1,17 @@
 const Houses = require('../models/Houses.js')
 
-function showAll () {
+async function showAll (req, res) {
         try {
-            const allHouses = Houses.showAll();
+            const allHouses = await Houses.showAll();
             res.json(allHouses);
         } catch (e) {
             res.status(500).json({ error: e.message });
         }
     }
 
-function showOneById (id) {
+async function showOneById (req, res) {
     try {
-        const oneHouse = Houses.showOneById(id);
+        const oneHouse = await Houses.showOneById(req.params.id);
         res.json(oneHouse);
     } catch (e) {
         res.status(404).json({ error: e.message });

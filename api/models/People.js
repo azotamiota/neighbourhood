@@ -7,7 +7,7 @@ class People {
         this.houseid = data.houseid// TODO
         this.name = data.name// TODO
         this.age = data.age// TODO
-        this.householdPeople = data.householdPeople
+        this.householdtotal = data.householdtotal
     }
 
     static showAll() {
@@ -15,6 +15,7 @@ class People {
         try {
             const peopleData = await neighbourhoodData.query('SELECT * FROM people')
             const people = peopleData.rows.map(person => new People(person))
+            console.log('people @ People.showAll(): ', people)
             resolve (people)
         } catch (error) {
             console.log('error: ', error.message);

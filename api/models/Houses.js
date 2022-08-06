@@ -2,17 +2,19 @@ const neighbourhoodData = require('../dbConfig/init') //TODO
 
 class Houses {
     constructor(data) {
-        this.id = data.id
         this.houseid = data.houseid// TODO
+        this.addressid = data.addressid
         this.owner = data.owner
     }
 
     static showAll() {
        return new Promise (async (resolve, reject) => {
         try {
-            const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-            const people = peopleData.rows.map(person => new People(person))
-            resolve (people)
+            const housesData = await neighbourhoodData.query('SELECT * FROM houses')
+            console.log('housesData.rows: ', housesData.rows)
+            const houses = housesData.rows.map(house => new Houses(house))
+            console.log('houses: ', houses)
+            resolve (houses)
         } catch (error) {
             console.log('error: ', error.message);
             reject('Unable to connect database')
@@ -20,13 +22,13 @@ class Houses {
        })
     }
 
-    static showOneById() {
+    static showOneById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                const onePerson = await neighbourhoodData.query('SELECT * FROM people WHERE id = $1', [id])
-                resolve(onePerson)
+                const oneHouse = await neighbourhoodData.query('SELECT * FROM houses WHERE houseid = $1', [id])
+                resolve(oneHouse.rows[0])
             } catch (error) {
-                  console.log('error: ', errormessage);
+                  console.log('error: ', error.message);
             reject('Unable to connect database')
             }
         })
