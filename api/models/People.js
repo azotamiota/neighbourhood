@@ -14,8 +14,10 @@ class People {
        return new Promise (async (resolve, reject) => {
         try {
             const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-            console.log('peopleData: ', peopleData)
+            console.log('peopleData: ', peopleData.name)
             const people = peopleData.rows.map(person => new People(person))
+            console.log('peoplo: ', people)
+
             resolve (people)
         } catch (error) {
             console.log('error: ', error.message);
