@@ -9,9 +9,9 @@ function showAll () {
         }
     }
 
-function showOneById () {
+function showOneById (id) {
     try {
-        const onePerson = People.showOneById();
+        const onePerson = People.showOneById(id);
         res.json(onePerson);
     } catch (e) {
         res.status(404).json({ error: e.message });
