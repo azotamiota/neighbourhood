@@ -1,44 +1,45 @@
 const People = require('../models/People')
 
-function showAll () {
+async function showAll (req, res) {
         try {
-            const allPeople = People.showAll();
+            const allPeople = await People.showAll();
+            console.log('allPeople: ', allPeople)
             res.json(allPeople);
         } catch (e) {
             res.status(500).json({ error: e.message });
         }
     }
 
-function showOneById (id) {
+async function showOneById (req, res) {
     try {
-        const onePerson = People.showOneById(id);
+        const onePerson = await People.showOneById(req.params.id);
         res.json(onePerson);
     } catch (e) {
         res.status(404).json({ error: e.message });
     }
 }
 
-function showPeopleWithinAgeRange() {
+async function showPeopleWithinAgeRange (req, res) {
         try {
-            const peopleWithinAgeRange = People.showWithinAgeRange();
+            const peopleWithinAgeRange = await People.showWithinAgeRange();
             res.json(peopleWithinAgeRange);
         } catch (e) {
             res.status(500).json({ error: e.message });
         }   
     }
 
-function showPeopleByHouseholdMembers() {
+async function showPeopleByHouseholdMembers (req, res) {
         try {
-            const peopleByHousholdMembers = People.showByHouseholdMembers();
+            const peopleByHousholdMembers = await People.showByHouseholdMembers();
             res.json(peopleByHousholdMembers);
         } catch (e) {
             res.status(500).json({ error: e.message });
         }
     }
 
-function addPerson() {
+async function addPerson (req, res) {
         try {
-            const addedPerson = People.addPerson();
+            const addedPerson = await People.addPerson();
             res.json(addedPerson);
         } catch (e) {
             res.status(500).json({ error: e.message });

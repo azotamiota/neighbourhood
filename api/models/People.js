@@ -1,4 +1,5 @@
 const neighbourhoodData = require('../dbConfig/init') //TODO
+// console.log('neighbourhoodData: ', neighbourhoodData)
 
 class People {
     constructor(data) {
@@ -13,6 +14,7 @@ class People {
        return new Promise (async (resolve, reject) => {
         try {
             const peopleData = await neighbourhoodData.query('SELECT * FROM people')
+            console.log('peopleData: ', peopleData)
             const people = peopleData.rows.map(person => new People(person))
             resolve (people)
         } catch (error) {
@@ -22,7 +24,7 @@ class People {
        })
     }
 
-    static showOnePerson() {
+    static showOnePerson(id) {
         return new Promise (async (resolve, reject) => {
             try {
                 const onePerson = await neighbourhoodData.query('SELECT * FROM people WHERE id = $1', [id])
