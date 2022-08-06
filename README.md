@@ -1,4 +1,4 @@
-# Neighbourhood API - MVC approach
+# Neighbourhood API - MVC architecture
 
 ## Installation
 
@@ -9,14 +9,13 @@
 
 - Install and launch [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
 - Go back to your text editor and make sure you are in the main folder
-- Launch Docker from the terminal `./scripts/startup.sh`
-- The server and the database will be automatically launched by a Docker container
-- Enter the `server` folder `cd server`
+- Launch Docker containers from the terminal `./scripts/startup.sh`
+- The server and the database will be automatically launched by Docker containers
 - Open your browser and go to `http://localhost:3000`
 
 ## How to use
 
-- When you see the `Server listening on port 3000` message, open your browser
+- When you see the `Server listening on port 3000` message, open your browser.
 - `http://localhost:3000/` route to show a welcome message.
 - `http://localhost:3000/people` route to show all people in the neighbourhood.
 - `http://localhost:3000/people/2` route to show a person with the id of 2. Change the number to see other neighbours.
