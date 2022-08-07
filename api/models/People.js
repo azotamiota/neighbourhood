@@ -4,24 +4,29 @@ const neighbourhoodData = require('../dbConfig/init') //TODO
 class People {
     constructor(data) {
         this.id = data.id
-        this.houseid = data.houseid// TODO
-        this.name = data.name// TODO
-        this.age = data.age// TODO
+        this.houseid = data.houseid
+        this.name = data.name
+        this.age = data.age
         this.householdtotal = data.householdtotal
     }
 
     static showAll() {
-       return new Promise (async (resolve, reject) => {
-        try {
-            const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-            const people = peopleData.rows.map(person => new People(person))
-            console.log('people @ People.showAll(): ', people)
-            resolve (people)
-        } catch (error) {
-            console.log('error: ', error.message);
-            reject('Unable to connect database')
-        }
-       })
+
+        return neighbourhoodData.query('SELECT * FROM people')  // more readable method?
+            .then(res => res.rows.map(person => new People(person)))
+            .catch(error => console.log('error: ', error.message))
+
+    //    return new Promise (async (resolve, reject) => {
+    //     try {
+    //         const peopleData = await neighbourhoodData.query('SELECT * FROM people')
+    //         const people = peopleData.rows.map(person => new People(person))
+    //         console.log('people @ People.showAll(): ', people)
+    //         resolve (people)
+    //     } catch (error) {
+    //         console.log('error: ', error.message);
+    //         reject('Unable to connect database')
+    //     }
+    //    })
     }
 
     static showOneById(id) {

@@ -26,5 +26,5 @@
 
 ## How to stop Docker containers
 
-- Press `Ctrl + C` or `CMD + c` to stop the server.
+- Press `Ctrl/CMD + C` to stop the server.
 - Run `./scripts/teardown.sh` script.
