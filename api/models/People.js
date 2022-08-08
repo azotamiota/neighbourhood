@@ -33,7 +33,6 @@ class People {
         return new Promise (async (resolve, reject) => {
             try {
                 const onePerson = await neighbourhoodData.query('SELECT * FROM people WHERE id = $1', [id])
-                // console.log('onePerson @ People.js model: ', onePerson)
                 resolve(onePerson.rows[0])
             } catch (error) {
                   console.log('error: ', error.message);
@@ -77,13 +76,25 @@ class People {
         })  
     }
 
-    static addPerson () {
-        // TODO
+    static addPerson (houseid, name, age, householdtotal) {
+        // console.log('hhould,name,age...blabla: ', houseid, name, age, householdtotal )
+        // return neighbourhoodData.query('INSERT INTO people (houseid, name, age, householdtotal) VALUES ($1, $2, $3, $4);', [houseid, name, age, householdtotal])
+        //     .then(person => new People(person.rows[0]))
+        //     .catch(error => console.log('error: ', error.message))
+        // return neighbourhoodData.query('INSERT ')
+
+        return new Promise (async (resolve, reject) => {
+            try {
+                const addedPerson = await neighbourhoodData.query('INSERT INTO people (houseid, name, age, householdtotal) VALUES ($1, $2, $3, $4);', [houseid, name, age, householdtotal])
+                resolve(addedPerson.rows[0])
+            } catch (error) {
+                  console.log('error in the Model: ', error.message);
+                reject('Unable to connect database')
+            }
+        })
     }
 
-    static addHouse () {
-        // TODO
-    }
+    
 
 }
 
