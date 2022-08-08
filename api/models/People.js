@@ -10,23 +10,12 @@ class People {
         this.householdtotal = data.householdtotal
     }
 
-    static showAll() {
+    static async showAll() {
 
-        return neighbourhoodData.query('SELECT * FROM people')  // more readable method?
+        return neighbourhoodData.query('SELECT * FROM people')
             .then(res => res.rows.map(person => new People(person)))
             .catch(error => console.log('error: ', error.message))
 
-    //    return new Promise (async (resolve, reject) => {
-    //     try {
-    //         const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-    //         const people = peopleData.rows.map(person => new People(person))
-    //         console.log('people @ People.showAll(): ', people)
-    //         resolve (people)
-    //     } catch (error) {
-    //         console.log('error: ', error.message);
-    //         reject('Unable to connect database')
-    //     }
-    //    })
     }
 
     static showOneById(id) {
@@ -41,28 +30,24 @@ class People {
         })
     }
 
-    static showWithinAgeRange(ageFrom, ageTo) {
-        return new Promise (async (resolve, reject) => {
-            try {
-                const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-                const peopleWithinAgeRange = peopleData.rows.filter(person => {
+    static async showWithinAgeRange(ageFrom, ageTo) {
+
+        return neighbourhoodData.query('SELECT * FROM people')
+            .then(peopleData => {
+                return peopleData.rows.filter(person => {
                     if (person.age >= ageFrom && person.age <= ageTo) {
                           return new People(person)}
                     }
                 )
-                resolve(peopleWithinAgeRange)
-            } catch (error) {
-                console.log('error: ', error.message);
-                reject('Unable to connect database')
-            }
-        })     
+            })
+            .catch(e => console.log(e))
+                
     }
 
     static showByHouseholdMembers (householdFrom, householdTo) {
         return new Promise (async (resolve, reject) => {
             try {
                 const peopleData = await neighbourhoodData.query('SELECT * FROM people')
-                console.log('peopleData.rows: ', peopleData.rows)
                 const peopleFilteredHousehold = peopleData.rows.filter(person => {
                     if (person.householdtotal >= householdFrom && person.householdtotal <= householdTo) {
                           return new People(person)}
@@ -76,22 +61,12 @@ class People {
         })  
     }
 
-    static addPerson (houseid, name, age, householdtotal) {
-        // console.log('hhould,name,age...blabla: ', houseid, name, age, householdtotal )
-        // return neighbourhoodData.query('INSERT INTO people (houseid, name, age, householdtotal) VALUES ($1, $2, $3, $4);', [houseid, name, age, householdtotal])
-        //     .then(person => new People(person.rows[0]))
-        //     .catch(error => console.log('error: ', error.message))
-        // return neighbourhoodData.query('INSERT ')
-
-        return new Promise (async (resolve, reject) => {
-            try {
-                const addedPerson = await neighbourhoodData.query('INSERT INTO people (houseid, name, age, householdtotal) VALUES ($1, $2, $3, $4);', [houseid, name, age, householdtotal])
-                resolve(addedPerson.rows[0])
-            } catch (error) {
-                  console.log('error in the Model: ', error.message);
-                reject('Unable to connect database')
-            }
-        })
+    static async addPerson (houseid, name, age, householdtotal) {
+        
+        return neighbourhoodData.query('INSERT INTO people (houseid, name, age, householdtotal) VALUES ($1, $2, $3, $4);', [houseid, name, age, householdtotal])
+            .then(person => person)
+            .catch(error => console.log('error in Model: ', error))
+        
     }
 
     

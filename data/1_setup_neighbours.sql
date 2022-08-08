@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS people;
 CREATE TABLE people (
     id serial PRIMARY KEY,
 	houseid INT,
-	name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
-    householdtotal INT NOT NULL,
+	name VARCHAR(100),
+    age INT,
+    householdtotal INT,
     CONSTRAINT fk_house
         FOREIGN KEY (houseid)
             REFERENCES houses(houseid)

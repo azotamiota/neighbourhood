@@ -39,10 +39,20 @@ async function showPeopleByHouseholdMembers (req, res) {
 
 async function addPerson (req, res) {
         try {
-            console.log('req in controller: ', req.headers)
-            const addedPerson = await People.addPerson(req.body.houseid, req.body.name, req.body.age, req.body.householdtotal);
-            console.log('addedPerson: ', addedPerson)
-            res.json(addedPerson);
+            console.log('req.body in the controller: ', req.body)
+            const houseid = req.body.houseid
+            const name = req.body.name
+            const age = req.body.age
+            const householdTotal = req.body.householdtotal
+            await People.addPerson(houseid, name, age, householdTotal);
+            res.json({
+                added_person : {
+                    houseid : houseid,
+                    name: name,
+                    age: age,
+                    householdtotal: householdTotal
+                }
+            });
         } catch (e) {
             console.log('error in the controller: ', e.message)
             res.status(500).json({ error: e.message });
